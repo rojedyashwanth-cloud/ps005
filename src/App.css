@@ -49,6 +49,11 @@
     border-radius: 10px;
     box-sizing: border-box;
 }
+.app .login-container .input-group .error,
+.app .signup-container .input-group .error{
+    border: 2px solid red;
+    
+}
 .app .login-container .input-group .right-icon,
 .app .signup-container .input-group .right-icon {
   right: 5px;
