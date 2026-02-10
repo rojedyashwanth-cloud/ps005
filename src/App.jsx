@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Toast from './Toast';
 
 const App = () => {
   const IMGURL=import.meta.env.BASE_URL;
@@ -8,6 +9,7 @@ const App = () => {
   const [isLoginView, setIsLoginView] = useState(true);
   const [formData, setFormData] = useState({email:"", password:"", name:"", phone:"", confirmPassword:""});
   const [errorData, setErrorData]=useState({});
+  const [toast, setToast] = useState({});
   
     function tooglePwd(){
       setTooglePassword(tooglePassword==="password"?"text":"password");
@@ -16,6 +18,7 @@ const App = () => {
       setTooglePasswordConfirm(tooglePasswordConfirm==="password"?"text":"password");
     }
     function switchView(){
+      setErrorData({});
       setFormData({email:"", password:"", name:"", phone:"", confirmPassword:""});
       setIsLoginView(isLoginView===true?false:true);
     }
@@ -27,7 +30,7 @@ const App = () => {
       if(validatesignin()) 
         // Perform sign-in logic here
       return;
-      alert("Sign-in successful!");
+      setToast({type: "success", message: "Sign-in successful!", id: Date.now()});
     }
     function signUp() {
       if(validatesignup()) 
@@ -93,7 +96,7 @@ const App = () => {
           <input type='text' className={errorData.email?"error":""} placeholder='Enter your email' name='email' value={formData.email} onChange={(e)=>handleInput(e)}/>
         </div>
          <div className='input-group'>
-          <img className='left-icon' src={IMGURL+"phone.png"} alt='' />
+          <img className='left-icon' src={IMGURL+"telephone.png"} alt='' />
           <input type='text' className={errorData.phone?"error":""} placeholder='Mobile number' name='phone' value={formData.phone} onChange={(e)=>handleInput(e)}/>
         </div>
         <div className='input-group'>
@@ -109,6 +112,7 @@ const App = () => {
           <p>Already have an account? <label onClick={()=>switchView()}>Login Here</label></p>
       </div>
           }
+          <Toast toastData = {toast}/>
     </div>
   );
 }
