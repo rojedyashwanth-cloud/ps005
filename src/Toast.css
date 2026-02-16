@@ -46,6 +46,15 @@
     background: green;
     animation: progress 5s linear forwards;
 }
+.toast .success::before{
+    background: green;
+}
+.toast .error::before{
+    background: red;
+}
+.toast .warning::before{
+    background: goldenrod;
+}
 @keyframes progress{
     100%{width: 0%;}
 }

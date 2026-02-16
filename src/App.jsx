@@ -10,6 +10,11 @@ const App = () => {
   const [formData, setFormData] = useState({email:"", password:"", name:"", phone:"", confirmPassword:""});
   const [errorData, setErrorData]=useState({});
   const [toast, setToast] = useState({});
+  const [toastDetails,setToastDetails]=useState({
+      success:{icon:"success.png", title:"Success message"},
+      error:{icon:"error.png", title:"Error message"},
+      warning:{icon:"warning.png", title:"Warning message"}
+  });
   
     function tooglePwd(){
       setTooglePassword(tooglePassword==="password"?"text":"password");
@@ -30,7 +35,7 @@ const App = () => {
       if(validatesignin()) 
         // Perform sign-in logic here
       return;
-      setToast({type: "success", message: "Sign-in successful!", id: Date.now()});
+      setToast({type: "success", message: "Form sign-in", id: Date.now()});
     }
     function signUp() {
       if(validatesignup()) 
